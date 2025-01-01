@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@vinejs/vine": "^3.0.0",
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
     "mongoose": "^8.8.4",
     "next": "15.0.4",
     "next-auth": "^4.24.11",
@@ -17,6 +19,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
