@@ -3,7 +3,6 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
-  basePath: '/myapp',
   i18n: {
     locales: ['en', 'bn'],
     defaultLocale: 'en',
