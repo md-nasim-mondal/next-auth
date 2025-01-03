@@ -130,7 +130,7 @@ export default function Register() {
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-300'></div>
         </div>
         {/* Social Login */}
-        <SocialLogin />
+        <SocialLogin loading={loading} setLoading={setLoading} />
         <p className='text-xs text-center sm:px-6 dark:text-gray-600'>
           Already have an account?{" "}
           <Link

@@ -26,7 +26,7 @@ export default function Login() {
       .then((res) => {
         setLoading(false);
         const response = res?.data;
-        console.log(response);
+        // console.log(response);
         if (response?.status == 200) {
           signIn("credentials", {
             email: authState?.email,
@@ -38,7 +38,7 @@ export default function Login() {
           console.log("User successfully login!");
         } else {
           setErrors(response?.errors);
-          console.log(errors);
+          // console.log(errors);
         }
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ export default function Login() {
                 setAuthState({ ...authState, email: e.target.value })
               }
             />
-            {/* <span className="text-red-500 font-bold">{errors?.email}</span> */}
+            <span className="text-red-500 font-bold">{errors?.email}</span>
           </div>
           <div className='space-y-1 text-sm'>
             <label htmlFor='password' className='block dark:text-gray-600'>
@@ -88,7 +88,7 @@ export default function Login() {
                 setAuthState({ ...authState, password: e.target.value })
               }
             />
-            {/* <span className="text-red-500 font-bold">{errors?.password}</span> */}
+            <span className="text-red-500 font-bold">{errors?.password}</span>
             <div className='flex justify-end text-xs dark:text-gray-600'>
               <a rel='noopener noreferrer' href='#'>
                 Forgot Password?
@@ -115,7 +115,7 @@ export default function Login() {
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-300'></div>
         </div>
         {/* Social Login */}
-        <SocialLogin/>
+        <SocialLogin loading={loading} setLoading={setLoading}/>
         <p className='text-xs text-center sm:px-6 dark:text-gray-600'>
           Don&apos;t have an account?
           <Link

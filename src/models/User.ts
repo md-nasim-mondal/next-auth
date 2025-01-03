@@ -12,7 +12,8 @@ const userSchema = new Schema({
     trim: true,
   },
   password: {
-    required: [true, "Password field is required"],
+    // required: [true, "Password field is required"],
+    required:false,
     type: Schema.Types.String,
   },
 });

@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
               message: "Please check your credentials!!",
             },
           },
-          { status: 401 }
+          { status: 200 }
         );
       }
     }
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     if (error instanceof errors?.E_VALIDATION_ERROR) {
       return NextResponse.json(
         { status: 500, errors: error?.messages },
-        { status: 500 }
+        { status: 200 }
       );
     }
   }

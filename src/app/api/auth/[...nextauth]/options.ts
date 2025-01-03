@@ -1,6 +1,6 @@
 import { connect } from "@/database/mongo.config";
 import Credentials from "next-auth/providers/credentials";
-// import GithubProvider from "next-auth/providers/github";
+import GithubProvider from "next-auth/providers/github";
 // import GoogleProvider from "next-auth/providers/google";
 import { AuthOptions, ISODateString, User } from "next-auth";
 import { User as UserModel } from "@/models/User";
@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
     async signIn({ user}) {
       connect();
       try {
-        const findUser = await UserModel.findOne({ email: user.email });
+        const findUser = await UserModel.findOne({ email: user?.email });
         if (findUser) {
           return true;
         }
@@ -88,10 +88,10 @@ export const authOptions: AuthOptions = {
         }
       },
     }),
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_CLIENT_ID!,
-    //   clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    // }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string ,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
 
     // GoogleProvider({
     //   clientId: process.env.GOOGLE_CLIENT_ID!,
