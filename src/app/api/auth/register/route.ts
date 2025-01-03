@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       output.password = bcrypt.hashSync(output?.password, salt);
       await User.create(output);
       return NextResponse.json(
-        { status: 200, message: "User created successful!" },
+        { status: 200, message: "Account created successfully. Please login to your account." },
         { status: 200 }
       );
     }

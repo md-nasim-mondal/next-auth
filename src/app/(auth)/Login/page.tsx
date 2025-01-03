@@ -1,8 +1,10 @@
 "use client"
 import Link from "next/link";
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Login() {
+  const params = useSearchParams();
   const [authState, setAuthState] = useState({
       email: "",
       password: ""
@@ -16,6 +18,7 @@ export default function Login() {
     <div className="flex items-center justify-center min-h-screen">
       <div className='w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800'>
         <h1 className='text-2xl font-bold text-center'>Login</h1>
+        {params?.get("message") ? <p className="bg-gray-400 font-bold rounded-md p-4">{params?.get("message")}</p> : <></>}
         <form className='space-y-6' onSubmit={submitForm}>
           <div className='space-y-1 text-sm'>
             <label htmlFor='email' className='block dark:text-gray-600'>
