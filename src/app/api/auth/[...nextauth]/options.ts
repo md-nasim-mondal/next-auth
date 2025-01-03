@@ -1,3 +1,5 @@
+import { connect } from "@/database/mongo.config";
+import { User } from "@/models/User";
 import type { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -17,11 +19,14 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials) {
-          const user = {
-              id: "1",
-              name: "J Smith",
-              email: credentials?.email
-          };
+          // const user = {
+          //     id: "1",
+          //     name: "J Smith",
+          //     email: credentials?.email
+          // };
+
+        connect();
+        const user = await User.findOne({email: credentials?.email})
 
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
