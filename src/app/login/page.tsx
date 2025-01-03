@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { signIn } from "next-auth/react";
+import SocialLogin from "../components/SocialLogin";
 
 export default function Login() {
   const params = useSearchParams();
@@ -113,7 +114,8 @@ export default function Login() {
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-300'></div>
         </div>
-        
+        {/* Social Login */}
+        <SocialLogin/>
         <p className='text-xs text-center sm:px-6 dark:text-gray-600'>
           Don&apos;t have an account?
           <Link

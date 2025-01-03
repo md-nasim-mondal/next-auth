@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import SocialLogin from "../components/SocialLogin";
 
 export default function Register() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function Register() {
         setLoading(false);
         const response = res?.data;
         if (response?.status == 200) {
-          router.push(`/login?message=${response?.message}`)
+          router.push(`/login?message=${response?.message}`);
           console.log("User successfully sign up!");
         } else if (response?.status == 400) {
           setErrors(response?.errors);
@@ -58,7 +59,7 @@ export default function Register() {
                 setAuthState({ ...authState, name: e.target.value })
               }
             />
-            <span className="text-red-500 font-bold">{errors?.name}</span>
+            <span className='text-red-500 font-bold'>{errors?.name}</span>
           </div>
           <div className='space-y-1 text-sm'>
             <label htmlFor='email' className='block dark:text-gray-600'>
@@ -74,7 +75,7 @@ export default function Register() {
                 setAuthState({ ...authState, email: e.target.value })
               }
             />
-            <span className="text-red-500 font-bold">{errors?.email}</span>
+            <span className='text-red-500 font-bold'>{errors?.email}</span>
           </div>
           <div className='space-y-1 text-sm'>
             <label htmlFor='password' className='block dark:text-gray-600'>
@@ -90,7 +91,7 @@ export default function Register() {
                 setAuthState({ ...authState, password: e.target.value })
               }
             />
-            <span className="text-red-500 font-bold">{errors?.password}</span>
+            <span className='text-red-500 font-bold'>{errors?.password}</span>
           </div>
           <div className='space-y-1 text-sm'>
             <label
@@ -121,6 +122,15 @@ export default function Register() {
             {loading ? "Processing" : "Register"}
           </button>
         </form>
+        <div className='flex items-center pt-4 space-x-1'>
+          <div className='flex-1 h-px sm:w-16 dark:bg-gray-300'></div>
+          <p className='px-3 text-sm dark:text-gray-600'>
+            Login with social accounts
+          </p>
+          <div className='flex-1 h-px sm:w-16 dark:bg-gray-300'></div>
+        </div>
+        {/* Social Login */}
+        <SocialLogin />
         <p className='text-xs text-center sm:px-6 dark:text-gray-600'>
           Already have an account?{" "}
           <Link
