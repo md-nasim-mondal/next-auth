@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
-// import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
   const params = useSearchParams();
@@ -27,12 +27,12 @@ export default function Login() {
         const response = res?.data;
         console.log(response);
         if (response?.status == 200) {
-          // signIn("credentials", {
-          //   email: authState?.email,
-          //   password: authState?.password,
-          //   callbackUrl: "/",
-          //   redirect: true
-          // })
+          signIn("credentials", {
+            email: authState?.email,
+            password: authState?.password,
+            callbackUrl: "/",
+            redirect: true
+          })
           router.push(`/`);
           console.log("User successfully login!");
         } else {
