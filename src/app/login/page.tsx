@@ -18,7 +18,7 @@ export default function Login() {
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    console.log("The Auth State is ", authState);
+    // console.log("The Auth State is ", authState);
 
     await axios
       .post(`${process.env.NEXT_PUBLIC_API}/api/auth/login`, authState)
