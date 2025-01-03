@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { SessionProvider } from "next-auth/react";
 
 interface Props {
@@ -8,5 +8,9 @@ interface Props {
 }
 
 export default function NextAuthProvider({ children }: Props) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider>
+      <Suspense>{children}</Suspense>
+    </SessionProvider>
+  );
 }
