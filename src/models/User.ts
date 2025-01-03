@@ -8,7 +8,7 @@ const userSchema = new Schema({
   email: {
     required: [true, "Email field is required"],
     type: Schema.Types.String,
-      unique: true,
+    unique: true,
     trim: true,
   },
   password: {
@@ -18,4 +18,3 @@ const userSchema = new Schema({
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
-
