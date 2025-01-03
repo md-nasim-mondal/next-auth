@@ -1,4 +1,4 @@
-import { connect } from "@/database/mogo.config";
+import { connect } from "@/database/mongo.config";
 import { loginSchema } from "@/validator/authSchema";
 import ErrorReporter from "@/validator/ErrorReporter";
 import vine, { errors } from "@vinejs/vine";
@@ -11,6 +11,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    console.log(body);
     const validator = vine.compile(loginSchema);
     validator.errorReporter = () => new ErrorReporter();
     const output = await validator.validate(body);
@@ -30,18 +31,20 @@ export async function POST(request: NextRequest) {
       } else {
         return NextResponse.json(
           {
-            status: 400,
-            message: "Please check your credentials!!",
+            status: 401,
+            errors: {
+              message: "Please check your credentials!!",
+            },
           },
-          { status: 200 }
+          { status: 401 }
         );
       }
     }
     return NextResponse.json(
       {
-        status: 200,
+        status: 400,
         errors: {
-          email: "No account found with this email!.",
+          message: "Please check your credentials!.",
         },
       },
       { status: 200 }
@@ -49,8 +52,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     if (error instanceof errors?.E_VALIDATION_ERROR) {
       return NextResponse.json(
-        { status: 400, errors: error?.messages },
-        { status: 200 }
+        { status: 500, errors: error?.messages },
+        { status: 500 }
       );
     }
   }

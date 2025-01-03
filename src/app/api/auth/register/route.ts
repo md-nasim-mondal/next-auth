@@ -1,5 +1,5 @@
 import { registerSchema } from "./../../../../validator/authSchema";
-import { connect } from "@/database/mogo.config";
+import { connect } from "@/database/mongo.config";
 import ErrorReporter from "@/validator/ErrorReporter";
 import vine, { errors } from "@vinejs/vine";
 import { NextResponse, type NextRequest } from "next/server";
@@ -36,7 +36,11 @@ export async function POST(request: NextRequest) {
       output.password = bcrypt.hashSync(output?.password, salt);
       await User.create(output);
       return NextResponse.json(
-        { status: 200, message: "Account created successfully. Please login to your account." },
+        {
+          status: 200,
+          message:
+            "Account created successfully. Please login to your account.",
+        },
         { status: 200 }
       );
     }
